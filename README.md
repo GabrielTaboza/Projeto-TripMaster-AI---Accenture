@@ -47,7 +47,7 @@ Resultado Final (Proposta de Viagem)
 
 ---
 
-## Estrutura Sugerida do Repositório
+## Estrutura do Repositório
 ```
 TripMaster-AI/
 │
@@ -98,10 +98,12 @@ TripMaster-AI/
 
 ---
 
-##  Curiosidades e Reflexões
-- Como a personalidade dos agentes influencia as decisões?  
-- Quais conflitos surgiram e como o orquestrador resolveu?  
-- O que poderia ser melhorado na coordenação multiagente?  
+##  Curiosidades
+- Como o papel e a personalidade do seu agente influenciaram as decisões finais?
+- Houve conflitos entre os agentes? Como o orquestrador poderia resolvê-los?
+- Quais seriam riscos se um agente estivesse mal configurado (prompt mal
+escrito)? Responda para cada agente.
+Que melhorias você faria ou fez para aprimorar a coordenação multiagente?
 
 ---
 
