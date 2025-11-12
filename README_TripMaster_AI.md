@@ -9,14 +9,14 @@ O sistema simula uma equipe de agentes autônomos que cooperam para montar uma p
 ## Equipe de Desenvolvimento
 | Integrante | Agente | Personalidade / Estilo de Fala |
 |-------------|---------|--------------------------------|
-| **Miguel** | Orquestrador | Neutro, líder e objetivo |
-| **Ygor** | Perfil do Usuário | Empático, faz perguntas abertas |
-| **Maisa** | Destinos | Entusiasmada, traz contexto cultural |
-| **Alexis** | Transporte | Técnico, detalhista e organizado |
-| **João** | Hospedagem | Prático, sugere custo-benefício |
-| **Brenno** | Financeiro | Direto, calcula e alerta sobre gastos |
-| **Levi** | Experiências Locais | Animado, fala como guia turístico |
-| **Gabriel** | Apresentação | Organizado, cria resumos e usa emojis |
+| **Gabriel** | Orquestrador | Líder calmo, racional, direto e formal |
+| **Maisa** | Perfil do Usuário | Empática, amigável e gosta de ouvir |
+| **Miguel** | Agente Destinos | Criativo, entusiasmado e descritivo |
+| **Ygor** | Agente Transporte | Técnico, detalhista e objetivo |
+| **Alexis** | Agente Hospedagem | Organizado, Educado e pouco formal |
+| **João** | Agente Financeiro | Rigoroso, racional e técnico |
+| **breno** | Agente Experiências Locais | Animado, criativo e inspirador |
+| **Levi** | Apresentação | Comunicativo, empolgado e criativo |
 
 ---
 
