@@ -15,7 +15,7 @@ O sistema simula uma equipe de agentes autônomos que cooperam para montar uma p
 | **Ygor** | Agente Transporte | Técnico, detalhista e objetivo |
 | **Alexis** | Agente Hospedagem | Organizado, Educado e pouco formal |
 | **João** | Agente Financeiro | Rigoroso, racional e técnico |
-| **breno** | Agente Experiências Locais | Animado, criativo e inspirador |
+| **Brenno** | Agente Experiências Locais | Animado, criativo e inspirador |
 | **Levi** | Apresentação | Comunicativo, empolgado e criativo |
 
 ---
