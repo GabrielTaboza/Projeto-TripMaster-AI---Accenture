@@ -78,11 +78,11 @@ TripMaster-AI/
 - [x] Criação do repositório e estrutura base  
 
 ###  Sprint 2 – Desenvolvimento no AutoGen (14/11 a 20/11)
-- [ ] Configuração de 3 agentes no AutoGen  
-- [ ] Criação dos prompts personalizados  
-- [ ] Simulação curta entre os 3 agentes
-- [ ] Registro de logs e prints das conversas  
-- [ ] Análise de conflitos entre agentes  
+- [x] Configuração de 3 agentes no AutoGen  
+- [x] Criação dos prompts personalizados  
+- [x] Simulação curta entre os 3 agentes
+- [x] Registro de logs e prints das conversas  
+- [x] Análise de conflitos entre agentes  
 
 ###  Sprint 3 – Finalização e Apresentação (21/11 a 25/11)
 - [ ] Organização da documentação final no GitHub  
