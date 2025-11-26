@@ -108,9 +108,9 @@ TripMaster-AI/
 ---
 
 ##  Evidências (a serem adicionadas)
-- [ ] Capturas de tela do AutoGen  
-- [ ] Logs de conversas entre agentes  
-- [ ] Gráfico ou diagrama do fluxo de comunicação  
+- [x] Capturas de tela do AutoGen  
+- [x] Logs de conversas entre agentes  
+- [x] Gráfico ou diagrama do fluxo de comunicação  
 
 ---
 
