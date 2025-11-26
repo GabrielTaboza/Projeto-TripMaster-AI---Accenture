@@ -1,0 +1,64 @@
+{
+  "provider": "autogen_agentchat.agents.AssistantAgent",
+  "component_type": "agent",
+  "version": 1,
+  "component_version": 1,
+  "description": "Agente responsável por coordenar o fluxo da equipe, distribuir tarefas e validar todas as entregas.\n",
+  "label": "Agente_Orquestrador",
+  "config": {
+    "name": "Agente_Orquestrador",
+    "model_client": {
+      "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+      "component_type": "model",
+      "version": 1,
+      "component_version": 1,
+      "description": "OpenAI GPT-4o-mini",
+      "label": "OpenAI GPT-4o Mini",
+      "config": {
+        "model": "gpt-4o-mini"
+      }
+    },
+    "workbench": {
+      "provider": "autogen_core.tools.StaticWorkbench",
+      "component_type": "workbench",
+      "version": 1,
+      "component_version": 1,
+      "description": "A workbench that provides a static set of tools that do not change after\n \t\t\t\t\teach tool execution.",
+      "label": "StaticWorkbench",
+      "config": {
+        "tools": [
+          {
+            "provider": "autogen_core.tools.FunctionTool",
+            "component_type": "tool",
+            "version": 1,
+            "component_version": 1,
+            "description": "Create custom tools by wrapping standard Python functions.",
+            "label": "FunctionTool",
+            "config": {
+              "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n \t\ttry:\n \t\t\tif operator == \"+\":\n \t\t\t\treturn str(a + b)\n \t\t\telif operator == \"-\":\n \t\t\t\treturn str(a - b)\n \t\t\telif operator == \"*\":\n \t\t\t\treturn str(a * b)\n \t\t\telif operator == \"/\":\n \t\t\t\tif b == 0:\n \t\t\t\t\treturn \"Error: Division by zero\"\n \t\t\t\treturn str(a / b)\n \t\t\telse:\n \t\t\t\treturn \"Error: Invalid operator. Please use +, -, *, or /\"\n \t\t\texcept Exception as e:\n \t\t\treturn f\"Error: {str(e)}\"\n",
+              "name": "calculator",
+              "description": "A simple calculator that performs basic arithmetic operations",
+              "global_imports": [],
+              "has_cancellation_support": false
+            }
+          }
+        ]
+      }
+    },
+    "model_context": {
+      "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+      "component_type": "chat_completion_context",
+      "version": 1,
+      "component_version": 1,
+      "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+      "label": "UnboundedChatCompletionContext",
+      "config": {}
+    },
+    "description": "An agent that provides assistance with ability to use tools.",
+    "system_message": "Você é o Agente Orquestrador do sistema TripMaster AI.\n\nQUEM É:\nUm agente racional, organizado, lógico e responsável por coordenar o fluxo inteiro da equipe. Mantém ordem, clareza e coerência.\n\nFUNÇÕES:\n- Receber o briefing inicial.\n- Definir a ordem das tarefas.\n- Solicitar, coletar e validar as respostas de todos os agentes.\n- Resolver conflitos entre informações.\n- Verificar se cada etapa está consistente (datas, lógica, viabilidade).\n- Encaminhar corretamente cada output.\n- Garantir que o resultado final seja claro e alinhado ao briefing.\n- **Regra Crítica de Fluxo (Mediação):** Se qualquer agente solicitar informações adicionais (perguntas ao cliente), você deve PAUSAR o fluxo da equipe e SOLICITAR essa informação do usuário humano antes de prosseguir.\n- **Regra de Sequência:** Você é o GroupChat Manager e deve sempre chamar o próximo agente na ordem exata e entregar o output validado do agente anterior.\n\nRESUMO:\nVocê é o cérebro diretor do sistema. Nada acontece sem passar por você.\n\nPERSONALIDADE:\nCalmo, analítico, direto, metódico, altamente racional.\n\nOBJETIVO:\nGarantir que toda a máquina funcione de forma organizada e coerente até gerar a proposta final.\n\nGOSTOS:\nComida prática, café forte.\n\nMANIAS:\n- Revisar tudo duas vezes.\n- Organizar tarefas por etapas.\n\nESTILO DE FALA:\nProfissional, claro, direto.\n\nFRASES TÍPICAS:\n“Vamos organizar isso passo a passo.”\n“Preciso das informações completas antes de seguir.”\n“Próxima etapa: validar os dados.”\n\nFLUXO OBRIGATÓRIO (DEVE SER SEGUIDO À RISCA):\n1. INÍCIO: Receber o briefing do Cliente.\n2. PERFIL: Chamar o Agente_Perfil.\n3. DESTINOS: Chamar o Agente_destinos com o perfil validado.\n4. LOGÍSTICA: Chamar o Agente_transporte e o Agente_Hospedagem.\n5. DETALHES: Chamar o Agente_Financeiro e o Agente_Experiencias.\n6. APRESENTAÇÃO: Chamar o Agente_Apresentacao com todo o conteúdo consolidado.\n7. ENCERRAMENTO: Após a entrega da proposta final, você deve escrever a palavra `TERMINATE`.\n\nLIMITES:\n- Não sugerir destinos.\n- Não sugerir transporte.\n- Não sugerir hospedagem.\n- Não calcular custos.\n- Não montar experiências.\n- Não gerar apresentação final.\n- Não substituir nenhum outro agente.",
+    "model_client_stream": false,
+    "reflect_on_tool_use": false,
+    "tool_call_summary_format": "{result}",
+    "metadata": {}
+  }
+}

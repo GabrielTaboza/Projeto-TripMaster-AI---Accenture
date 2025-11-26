@@ -1,0 +1,66 @@
+{
+  "provider": "autogen_agentchat.agents.AssistantAgent",
+  "component_type": "agent",
+  "version": 1,
+  "component_version": 1,
+  "description": "Gera e avalia destinos adequados ao perfil do cliente com base em clima, estilo e sazonalidade.\n",
+  "label": "Agente_destinos",
+  "config": {
+    "name": "Agente_destinos",
+    "model_client": {
+      "provider": "autogen_ext.models.google.GoogleChatCompletionClient",
+      "component_type": "model",
+      "version": 1,
+      "component_version": 1,
+      "description": "Chat completion client for Google hosted models.",
+      "label": "Google Gemini 2.5 Pro",
+      "config": {
+        "model": "gemini-2.5-pro",
+        "api_key": "",
+        "temperature": 0.6
+      }
+    },
+    "workbench": {
+      "provider": "autogen_core.tools.StaticWorkbench",
+      "component_type": "workbench",
+      "version": 1,
+      "component_version": 1,
+      "description": "A workbench that provides a static set of tools that do not change after\n \t\t\t\t\teach tool execution.",
+      "label": "StaticWorkbench",
+      "config": {
+        "tools": [
+          {
+            "provider": "autogen_core.tools.FunctionTool",
+            "component_type": "tool",
+            "version": 1,
+            "component_version": 1,
+            "description": "Create custom tools by wrapping standard Python functions.",
+            "label": "FunctionTool",
+            "config": {
+              "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n \t\ttry:\n \t\t\tif operator == \"+\":\n \t\t\t\treturn str(a + b)\n \t\t\telif operator == \"-\":\n \t\t\t\treturn str(a - b)\n \t\t\telif operator == \"*\":\n \t\t\t\treturn str(a * b)\n \t\t\telif operator == \"/\":\n \t\t\t\tif b == 0:\n \t\t\t\t\treturn \"Error: Division by zero\"\n \t\t\t\treturn str(a / b)\n \t\t\telse:\n \t\t\t\treturn \"Error: Invalid operator. Please use +, -, *, or /\"\n \t\t\texcept Exception as e:\n \t\t\treturn f\"Error: {str(e)}\"\n",
+              "name": "calculator",
+              "description": "A simple calculator that performs basic arithmetic operations",
+              "global_imports": [],
+              "has_cancellation_support": false
+            }
+          }
+        ]
+      }
+    },
+    "model_context": {
+      "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+      "component_type": "chat_completion_context",
+      "version": 1,
+      "component_version": 1,
+      "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+      "label": "UnboundedChatCompletionContext",
+      "config": {}
+    },
+    "description": "An agent that provides assistance with ability to use tools.",
+    "system_message": "Você é o Agente de Destinos do sistema TripMaster AI.\n\nQUEM É:\nUm agente criativo, descritivo, inspirado e apaixonado por lugares.\n\nFUNÇÕES:\n- Gerar 2 a 4 destinos adequados ao perfil.\n- Justificar cada destino com clima, natureza, vibe, gastronomia e sazonalidade.\n- Alertar para riscos (chuva, calor extremo, alta temporada).\n- Sugerir alternativas próximas.\n\nRESUMO:\nPropõe destinos que combinam com o estilo do cliente.\n\nPERSONALIDADE:\nDescritivo, inspirador, intuitivo, entusiasmado.\n\nOBJETIVO:\nEncontrar o destino perfeito dentro das preferências do cliente.\n\nGOSTOS:\nComida regional, cozinha local, comida de rua.\n\nMANIAS:\n- Sempre mencionar gastronomia.\n- Descrever atmosfera e energia do lugar.\n\nESTILO DE FALA:\nEmocional, visual, envolvente.\n\nFRASES TÍPICAS:\n“Este destino tem uma calmaria que combina com o casal…”\n“A vibe desse lugar é perfeita em dezembro.”\n\nLIMITES:\n- Não calcular preços.\n- Não sugerir hospedagem.\n- Não sugerir transporte.\n- Não montar roteiro.\n- Não sugerir restaurantes ou experiências específicas.\n- Não gerar apresentação final\n",
+    "model_client_stream": false,
+    "reflect_on_tool_use": false,
+    "tool_call_summary_format": "{result}",
+    "metadata": {}
+  }
+}

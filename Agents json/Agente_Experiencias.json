@@ -1,0 +1,64 @@
+{
+  "provider": "autogen_agentchat.agents.AssistantAgent",
+  "component_type": "agent",
+  "version": 1,
+  "component_version": 1,
+  "description": "Sugere experiências, passeios e atividades adequadas ao destino.\n",
+  "label": "Agente_Experiencias",
+  "config": {
+    "name": "Agente_Experiencias",
+    "model_client": {
+      "provider": "autogen_ext.models.openai.OpenAIChatCompletionClient",
+      "component_type": "model",
+      "version": 1,
+      "component_version": 1,
+      "description": "OpenAI GPT-4o-mini",
+      "label": "OpenAI GPT-4o Mini",
+      "config": {
+        "model": "gpt-4o-mini"
+      }
+    },
+    "workbench": {
+      "provider": "autogen_core.tools.StaticWorkbench",
+      "component_type": "workbench",
+      "version": 1,
+      "component_version": 1,
+      "description": "A workbench that provides a static set of tools that do not change after\n \t\t\t\t\teach tool execution.",
+      "label": "StaticWorkbench",
+      "config": {
+        "tools": [
+          {
+            "provider": "autogen_core.tools.FunctionTool",
+            "component_type": "tool",
+            "version": 1,
+            "component_version": 1,
+            "description": "Create custom tools by wrapping standard Python functions.",
+            "label": "FunctionTool",
+            "config": {
+              "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n \t\ttry:\n \t\t\tif operator == \"+\":\n \t\t\t\treturn str(a + b)\n \t\t\telif operator == \"-\":\n \t\t\t\treturn str(a - b)\n \t\t\telif operator == \"*\":\n \t\t\t\treturn str(a * b)\n \t\t\telif operator == \"/\":\n \t\t\t\tif b == 0:\n \t\t\t\t\treturn \"Error: Division by zero\"\n \t\t\t\treturn str(a / b)\n \t\t\telse:\n \t\t\t\treturn \"Error: Invalid operator. Please use +, -, *, or /\"\n \t\t\texcept Exception as e:\n \t\t\treturn f\"Error: {str(e)}\"\n",
+              "name": "calculator",
+              "description": "A simple calculator that performs basic arithmetic operations",
+              "global_imports": [],
+              "has_cancellation_support": false
+            }
+          }
+        ]
+      }
+    },
+    "model_context": {
+      "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+      "component_type": "chat_completion_context",
+      "version": 1,
+      "component_version": 1,
+      "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+      "label": "UnboundedChatCompletionContext",
+      "config": {}
+    },
+    "description": "An agent that provides assistance with ability to use tools.",
+    "system_message": "Você é o Agente de Experiências do TripMaster AI.\n\nQUEM É:\nCriativo, empolgado, cultural e apaixonado por explorar.\n\nFUNÇÕES:\n- Sugerir passeios, atividades, restaurantes e cultura local.\n- Criar ideias de experiências marcantes.\n- Adaptar atividades ao estilo do cliente.\n\nRESUMO:\nEnriquece a viagem com vivências únicas.\n\nPERSONALIDADE:\nExtrovertido, curioso, enérgico.\n\nOBJETIVO:\nProporcionar ao viajante momentos inesquecíveis.\n\nGOSTOS:\nComida local, eventos culturais, fotografia.\n\nMANIAS:\n- Destacar experiências únicas.\n- Criar roteiros com leve emoção.\n\nESTILO DE FALA:\nCaloroso, inspirador.\n\nLIMITES:\n- Não sugerir destinos.\n- Não sugerir transporte.\n- Não sugerir hospedagem.\n- Não calcular custos exatos.\n- Não gerar apresentação final.\n",
+    "model_client_stream": false,
+    "reflect_on_tool_use": false,
+    "tool_call_summary_format": "{result}",
+    "metadata": {}
+  }
+}

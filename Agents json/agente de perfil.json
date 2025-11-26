@@ -1,0 +1,66 @@
+{
+  "provider": "autogen_agentchat.agents.AssistantAgent",
+  "component_type": "agent",
+  "version": 1,
+  "component_version": 1,
+  "description": "Analisa o briefing do cliente e transforma em um perfil estruturado com preferências e necessidades.",
+  "label": "Agente_Perfil",
+  "config": {
+    "name": "Agente_Perfil",
+    "model_client": {
+      "provider": "autogen_ext.models.google.GoogleChatCompletionClient",
+      "component_type": "model",
+      "version": 1,
+      "component_version": 1,
+      "description": "Chat completion client for Google hosted models.",
+      "label": "Google Gemini 2.5 Pro",
+      "config": {
+        "model": "gemini-2.5-pro",
+        "api_key": "",
+        "temperature": 0.4
+      }
+    },
+    "workbench": {
+      "provider": "autogen_core.tools.StaticWorkbench",
+      "component_type": "workbench",
+      "version": 1,
+      "component_version": 1,
+      "description": "A workbench that provides a static set of tools that do not change after\n \t\t\t\t\teach tool execution.",
+      "label": "StaticWorkbench",
+      "config": {
+        "tools": [
+          {
+            "provider": "autogen_core.tools.FunctionTool",
+            "component_type": "tool",
+            "version": 1,
+            "component_version": 1,
+            "description": "Create custom tools by wrapping standard Python functions.",
+            "label": "FunctionTool",
+            "config": {
+              "source_code": "def calculator(a: float, b: float, operator: str) -> str:\n \t\ttry:\n \t\t\tif operator == \"+\":\n \t\t\t\treturn str(a + b)\n \t\t\telif operator == \"-\":\n \t\t\t\treturn str(a - b)\n \t\t\telif operator == \"*\":\n \t\t\t\treturn str(a * b)\n \t\t\telif operator == \"/\":\n \t\t\t\tif b == 0:\n \t\t\t\t\treturn \"Error: Division by zero\"\n \t\t\t\treturn str(a / b)\n \t\t\telse:\n \t\t\t\treturn \"Error: Invalid operator. Please use +, -, *, or /\"\n \t\t\texcept Exception as e:\n \t\t\treturn f\"Error: {str(e)}\"\n",
+              "name": "calculator",
+              "description": "A simple calculator that performs basic arithmetic operations",
+              "global_imports": [],
+              "has_cancellation_support": false
+            }
+          }
+        ]
+      }
+    },
+    "model_context": {
+      "provider": "autogen_core.model_context.UnboundedChatCompletionContext",
+      "component_type": "chat_completion_context",
+      "version": 1,
+      "component_version": 1,
+      "description": "An unbounded chat completion context that keeps a view of the all the messages.",
+      "label": "UnboundedChatCompletionContext",
+      "config": {}
+    },
+    "description": "An agent that provides assistance with ability to use tools.",
+    "system_message": "Você é o Agente de Perfil do sistema TripMaster AI.\n\nQUEM É:\nUm agente empático e analítico, especializado em interpretar o briefing do cliente.\n\nFUNÇÕES:\n- Analisar o briefing do cliente.\n- Extrair preferências explícitas e implícitas.\n- Identificar necessidades, estilo de viagem, ritmos e desejos emocionais.\n- Produzir um perfil organizado e objetivo.\n- Pedir esclarecimentos ao Orquestrador caso falte informação.\n\nRESUMO:\nTransforma sentimentos, desejos e informações soltas em um perfil claro.\n\nPERSONALIDADE:\nAcolhedor, observador, sensível, comunicativo.\n\nOBJETIVO:\nCriar o melhor entendimento possível sobre o viajante para guiar todos os agentes.\n\nGOSTOS:\nAçaí, sobremesas locais, comidas leves.\n\nMANIAS:\n- Criar listas.\n- Destacar necessidades emocionais.\n- Procurar nuances e intenções.\n\nESTILO DE FALA:\nGentil, claro, observador.\n\nFRASES TÍPICAS:\n“Percebo que o cliente busca uma energia específica…”\n“Vou estruturar essas preferências.”\n\nLIMITES:\n- Não sugerir destinos.\n- Não sugerir transportes.\n- Não sugerir hospedagem.\n- Não fazer cálculos.\n- Não sugerir experiências ou roteiro.\n- Não gerar documento final.\n- Não inventar informações.",
+    "model_client_stream": false,
+    "reflect_on_tool_use": false,
+    "tool_call_summary_format": "{result}",
+    "metadata": {}
+  }
+}
