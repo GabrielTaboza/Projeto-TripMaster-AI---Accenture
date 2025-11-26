@@ -52,19 +52,35 @@ Resultado Final (Proposta de Viagem)
 TripMaster-AI/
 │
 ├── README.md
-├── /agents/
-│   ├── orquestrador.md
-│   ├── perfil_usuario.md
-│   ├── agente_destinos.md
-│   ├── agente_transporte.md
-│   ├── agente_hospedagem.md
-│   ├── agente_financeiro.md
-│   ├── experiencias_locais.md
-│   └── apresentacao.md
-├── /inputs/
-│   └── cliente.txt
-└── /docs/
-    └── fluxograma_interacao.png
+│
+├── Agents json/
+│   ├── orquestrador.json
+│   ├── perfil_usuario.json
+│   ├── agente_destinos.json
+│   ├── agente_transporte.json
+│   ├── agente_hospedagem.json
+│   ├── agente_financeiro.json
+│   ├── experiencias_locais.json
+│   └── apresentacao.json
+│
+├── Agents txt/
+│   ├── orquestrador.txt
+│   ├── perfil_usuario.txt
+│   ├── agente_destinos.txt
+│   ├── agente_transporte.txt
+│   ├── agente_hospedagem.txt
+│   ├── agente_financeiro.txt
+│   ├── experiencias_locais.txt
+│   └── apresentacao.txt
+│
+├── Funcionamento/
+│   ├── floxogramas.png   
+│   
+├── Inputs/
+│   └── briefing_cliente.txt
+│
+└── Projeto.pdf
+
 ```
 
 ---
